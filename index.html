@@ -30,6 +30,7 @@
     </script>
 
     <style>
+        /* Glassmorphism */
         .glass-card {
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -57,8 +58,8 @@
         <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-green-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-emerald-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
         
-        <div class="absolute top-[-20%] left-[-10%] w-[900px] h-[900px] bg-green-900/30 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] bg-emerald-900/20 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
+        <div class="absolute top-[-20%] left-[-10%] w-[900px] h-[900px] bg-green-900/20 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] bg-emerald-900/15 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
     </div>
 
     <div class="relative w-full min-h-[90vh] flex flex-col items-center pt-24 pb-32">
@@ -173,7 +174,7 @@
 
     </div>
 
-    <div class="relative bg-white dark:bg-black/60 border-t border-gray-100 dark:border-white/5 backdrop-blur-xl z-30 transition-colors duration-500 pb-20 pt-32">
+    <div class="relative z-30 pb-20 pt-32">
         <div class="max-w-6xl mx-auto px-6">
             
             <div class="text-center mb-20">
@@ -215,7 +216,7 @@
         </div>
     </div>
 
-    <footer class="border-t border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-black py-12 text-center transition-colors duration-500">
+    <footer class="border-t border-gray-100 dark:border-white/5 py-12 text-center transition-colors duration-500 relative z-30">
         <h2 class="text-2xl font-extrabold tracking-tighter text-gray-900 dark:text-gray-700 mb-6">VAGER.</h2>
         <p class="text-xs text-gray-500 dark:text-gray-600">&copy; 2026 Vager Inc.</p>
     </footer>
