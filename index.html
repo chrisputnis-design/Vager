@@ -18,12 +18,11 @@
                         'float-slow': 'float 8s ease-in-out infinite',
                         'float-medium': 'float 6s ease-in-out infinite',
                         'float-fast': 'float 4s ease-in-out infinite',
-                        'float-delayed': 'float 7s ease-in-out infinite 2s',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-12px)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         }
                     }
                 }
@@ -33,16 +32,23 @@
 
     <style>
         .glass-card {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
+        
         /* Light Mode Glass */
         .glass-card-light {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.9);
         }
+
+        /* Dark Mode Glass */
+        .glass-card-dark {
+            /* Handled via tailwind classes in HTML */
+        }
+
         .fade-num { transition: color 0.3s ease; }
     </style>
 </head>
@@ -54,27 +60,27 @@
     </button>
 
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] bg-blue-200 rounded-full mix-blend-multiply filter blur-[90px] opacity-50 dark:opacity-0 transition-opacity"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-purple-200 rounded-full mix-blend-multiply filter blur-[90px] opacity-50 dark:opacity-0 transition-opacity"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-purple-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
         
-        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-indigo-900/40 rounded-full mix-blend-screen filter blur-[100px] opacity-0 dark:opacity-100 transition-opacity"></div>
-        <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-blue-900/30 rounded-full mix-blend-screen filter blur-[100px] opacity-0 dark:opacity-100 transition-opacity"></div>
+        <div class="absolute top-[-20%] left-[-10%] w-[900px] h-[900px] bg-indigo-900/40 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] bg-blue-900/30 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
     </div>
 
-    <div class="relative w-full min-h-[120vh] flex flex-col items-center pt-24 overflow-hidden">
+    <div class="relative w-full min-h-[90vh] flex flex-col items-center pt-24 pb-32">
 
-        <div class="z-30 text-center mb-24 animate-fade-in">
+        <div class="z-20 text-center mb-24 animate-fade-in">
             <h2 class="text-6xl font-extrabold tracking-tighter cursor-default dark:text-white text-gray-900">VAGER.</h2>
         </div>
 
-        <div class="z-30 text-center px-4 max-w-[460px] mx-auto flex flex-col items-center">
+        <div class="z-20 text-center px-4 max-w-[500px] mx-auto flex flex-col items-center">
             
-            <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.05]">
+            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.05]">
                 Make everything <br> 
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">a bet.</span>
             </h1>
             
-            <p class="text-gray-600 dark:text-gray-400 text-lg mb-10 leading-relaxed font-medium">
+            <p class="text-gray-600 dark:text-gray-400 text-xl mb-12 leading-relaxed font-medium">
                 The prediction market for your friend group. <br>
                 Put your money where your mouth is.
             </p>
@@ -99,74 +105,84 @@
         </div>
 
 
-        <div class="hidden xl:block absolute top-[12%] left-[2%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-slow transform -rotate-3 z-10">
-            <div class="flex justify-between items-center mb-2"><span class="text-[10px] font-bold text-red-500 uppercase">Live</span><span class="text-[10px] text-gray-500">2am</span></div>
-            <p class="font-bold text-md mb-2">"Giulia throws up tonight"</p>
-            <div class="flex gap-2"><span class="bg-black/5 dark:bg-white/10 px-2 py-1 rounded text-xs font-mono">Yes: 2.5x</span></div>
-        </div>
-
-        <div class="hidden xl:block absolute top-[28%] left-[4%] w-56 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-3 animate-float-medium transform rotate-2 z-0">
-            <p class="font-bold text-sm mb-1">"Lotto actually pays the bill"</p>
-            <span class="text-[10px] text-gray-400">Odds: 15.0x (Longshot)</span>
-        </div>
-
-        <div class="hidden xl:block absolute top-[42%] left-[1%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform -rotate-2 z-10">
-            <div class="flex items-center gap-2 mb-2"><i data-lucide="flag" class="w-3 h-3 text-red-600"></i><span class="text-[10px] font-bold text-gray-400">DERBY</span></div>
-            <p class="font-bold text-md mb-2">"Milan wins & Leao scores"</p>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 h-1 rounded-full"><div class="bg-red-600 h-full w-[40%]"></div></div>
-        </div>
-
-        <div class="hidden xl:block absolute top-[58%] left-[3%] w-56 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-delayed transform rotate-3 z-0">
-            <p class="font-bold text-sm mb-2">"Vincenzo sends a voice note > 3 mins"</p>
-            <div class="flex justify-between text-xs text-gray-500"><span>YES (-200)</span><span>NO (+150)</span></div>
-        </div>
-
-        <div class="hidden xl:block absolute top-[75%] left-[5%] w-52 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-3 animate-float-slow transform -rotate-1 z-10">
-            <p class="font-bold text-sm">"Lamine Yamal scores ⚽️"</p>
-        </div>
-
-         <div class="hidden xl:block absolute top-[88%] left-[2%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-3 animate-float-medium transform rotate-4 z-0">
-            <p class="font-bold text-sm text-gray-500 dark:text-gray-400">"Nicola blacks out before midnight"</p>
-        </div>
-
-
-        <div class="hidden xl:block absolute top-[15%] right-[2%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-medium transform rotate-2 z-10">
-            <div class="flex justify-between items-center mb-2"><span class="text-[10px] font-bold text-purple-500 uppercase">Long Term</span></div>
-            <p class="font-bold text-md mb-2 leading-tight">"Filo gets a GF before end of 2026"</p>
-            <div class="grid grid-cols-2 gap-2">
-                <button class="bg-black/5 dark:bg-white/10 py-1 rounded text-xs font-bold">Buy YES</button>
-                <button class="bg-black/5 dark:bg-white/10 py-1 rounded text-xs font-bold">Buy NO</button>
+        <div class="hidden xl:block absolute top-[15%] left-[5%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-slow transform -rotate-3 z-10 hover:scale-105 hover:rotate-0">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">Live</span>
+                <span class="text-[10px] text-gray-500">Ends 2am</span>
+            </div>
+            <p class="font-bold text-lg mb-3 leading-tight">"Giulia throws up tonight"</p>
+            <div class="flex gap-2">
+                <div class="flex-1 bg-black/5 dark:bg-white/10 p-2 rounded text-center">
+                    <div class="text-[10px] text-gray-500">YES</div>
+                    <div class="text-green-600 dark:text-green-400 font-bold font-mono">2.5x</div>
+                </div>
+                <div class="flex-1 bg-black/5 dark:bg-white/10 p-2 rounded text-center">
+                    <div class="text-[10px] text-gray-500">NO</div>
+                    <div class="text-blue-600 dark:text-blue-400 font-bold font-mono">1.2x</div>
+                </div>
             </div>
         </div>
 
-        <div class="hidden xl:block absolute top-[32%] right-[5%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-slow transform -rotate-2 z-0">
-            <div class="flex items-center gap-2 mb-2"><i data-lucide="music" class="w-3 h-3 text-green-500"></i><span class="text-[10px] font-bold text-gray-400">DATA</span></div>
-            <p class="font-bold text-md mb-1">"Sarah's Spotify Wrapped > 40k mins"</p>
+        <div class="hidden xl:block absolute top-[18%] right-[5%] w-72 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-medium transform rotate-3 z-10 hover:scale-105 hover:rotate-0">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-[10px] font-bold text-purple-500 uppercase tracking-widest">Long Term</span>
+            </div>
+            <p class="font-bold text-lg mb-3 leading-tight">"Filo gets a GF before end of 2026"</p>
+             <div class="grid grid-cols-2 gap-2">
+                <button class="bg-black/5 dark:bg-white/10 hover:bg-black/10 transition py-2 rounded-lg text-xs font-bold">Buy YES</button>
+                <button class="bg-black/5 dark:bg-white/10 hover:bg-black/10 transition py-2 rounded-lg text-xs font-bold">Buy NO</button>
+            </div>
         </div>
 
-        <div class="hidden xl:block absolute top-[48%] right-[1%] w-56 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-delayed transform rotate-3 z-10">
-            <p class="font-bold text-sm mb-2">"Matteo arrives before the antipasti"</p>
-            <span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded font-bold">NO: 1.01x (Lock)</span>
+        <div class="hidden xl:block absolute top-[50%] left-[3%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform rotate-2 z-0 hover:scale-105 hover:rotate-0">
+             <div class="flex items-center gap-2 mb-2">
+                <i data-lucide="music" class="w-4 h-4 text-green-500"></i>
+                <span class="text-xs font-bold text-gray-400">DATA</span>
+            </div>
+            <p class="font-bold text-md mb-2">"Sarah's Spotify Wrapped > 40k mins"</p>
+             <div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-green-500 h-full w-[65%]"></div>
+            </div>
         </div>
 
-        <div class="hidden xl:block absolute top-[65%] right-[4%] w-52 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform -rotate-1 z-0">
-             <div class="flex justify-between mb-1"><span class="text-xs font-bold text-gray-400">UBER</span></div>
-            <p class="font-bold text-md">"Surge > 3.0x tonight"</p>
+        <div class="hidden xl:block absolute top-[45%] right-[2%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-slow transform -rotate-2 z-0 hover:scale-105 hover:rotate-0">
+             <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-orange-500">NIGHT OUT</span>
+            </div>
+            <p class="font-bold text-md mb-2">"Nicola blacks out before midnight"</p>
+             <div class="flex -space-x-2 mb-2">
+                <div class="w-6 h-6 rounded-full bg-gray-300 dark:bg-gray-600 border-2 border-white dark:border-black"></div>
+                <div class="w-6 h-6 rounded-full bg-gray-400 dark:bg-gray-500 border-2 border-white dark:border-black"></div>
+                <div class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white dark:border-black flex items-center justify-center text-[10px] text-white font-bold">+8</div>
+            </div>
+            <span class="text-[10px] text-gray-400">Pool: €80.00</span>
         </div>
 
-        <div class="hidden xl:block absolute top-[80%] right-[2%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-3 animate-float-medium transform rotate-2 z-10">
-            <p class="font-bold text-sm mb-1">"Filippo mentions his consulting job"</p>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 h-1 rounded-full overflow-hidden"><div class="bg-blue-500 h-full w-[90%]"></div></div>
+        <div class="hidden xl:block absolute -bottom-16 left-[8%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-medium transform rotate-6 z-40 hover:scale-105 hover:rotate-0 border-b-4 border-b-green-500">
+             <div class="flex justify-between mb-1">
+                <span class="text-xs font-bold text-gray-400">DINNER</span>
+            </div>
+            <p class="font-bold text-md mb-2">"Lotto actually pays the bill"</p>
+            <div class="bg-green-100 dark:bg-green-500/20 p-2 rounded text-center">
+                 <span class="text-green-700 dark:text-green-400 text-xs font-bold">ODDS: 15.0x (Longshot)</span>
+            </div>
         </div>
-        
-        <div class="hidden xl:block absolute top-[92%] right-[5%] w-48 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-3 animate-float-slow transform -rotate-3 z-0 opacity-70">
-            <p class="font-bold text-sm text-gray-500 dark:text-gray-400">"Rain in Milan today 🌧"</p>
-        </div>
+
+        <div class="hidden xl:block absolute -bottom-12 right-[8%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform -rotate-4 z-40 hover:scale-105 hover:rotate-0 border-b-4 border-b-red-500">
+            <div class="flex justify-between items-center mb-2">
+               <span class="text-xs font-bold text-red-400">PUNCTUALITY</span>
+           </div>
+           <p class="font-bold text-md mb-2">"Vincenzo arrives before the antipasti"</p>
+           <div class="flex justify-between items-center border-t border-gray-200 dark:border-white/10 pt-2">
+               <span class="text-xs text-gray-500">Market</span>
+               <span class="font-mono font-bold text-red-600 dark:text-red-400">NO (-500)</span>
+           </div>
+       </div>
 
     </div>
 
-    <div class="relative bg-white dark:bg-black/50 border-t border-gray-100 dark:border-white/5 backdrop-blur-xl z-30 transition-colors duration-500">
-        <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="relative bg-white dark:bg-black/60 border-t border-gray-100 dark:border-white/5 backdrop-blur-xl z-30 transition-colors duration-500 pb-20 pt-32">
+        <div class="max-w-6xl mx-auto px-6">
             
             <div class="text-center mb-20">
                 <span class="text-blue-600 dark:text-blue-500 font-bold tracking-widest text-xs uppercase mb-2 block">The Platform</span>
