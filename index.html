@@ -58,11 +58,6 @@
         .fade-num { transition: color 0.3s ease; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .mask-linear {
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-white overflow-x-hidden relative selection:bg-blue-500 selection:text-white font-sans leading-antialiased transition-colors duration-500">
@@ -150,12 +145,6 @@
                     <button class="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/5 hover:bg-red-500/10 hover:border-red-500/50 hover:text-red-500 dark:hover:text-red-400 transition py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-500">Buy NO</button>
                 </div>
             </div>
-
-            <div class="hidden xl:block absolute bottom-[15%] left-[8%] w-64 glass-card bg-white/60 dark:bg-black/40 border-white/40 dark:border-white/10 rounded-2xl p-5 animate-float-medium transform rotate-6 z-10 border-b-4 border-b-red-500 hover:scale-105 transition duration-500 hover:rotate-0">
-                <div class="flex justify-between mb-2"><span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Casino Night</span></div>
-                <p class="font-bold text-lg mb-3 text-gray-900 dark:text-white">"Alex loses $100"</p>
-                <div class="bg-red-500/10 border border-red-500/30 p-2 rounded-lg text-center"><span class="text-red-500 dark:text-red-400 text-xs font-bold font-mono">YES: 1.10x (Likely)</span></div>
-           </div>
         </div>
 
         <div class="relative z-30 pb-32 pt-10">
@@ -254,30 +243,29 @@
                     </div>
                 </div>
 
-                <div class="flex gap-3">
-                    <div class="w-9 h-9 rounded-full bg-purple-100 dark:bg-purple-900/40 flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold text-purple-600 dark:text-purple-300">G</div>
-                    <div class="flex flex-col gap-1 max-w-[90%]">
-                        <span class="text-[10px] text-gray-500 ml-2 font-medium">Giulia</span>
+                <div class="w-full flex justify-center py-2 animate-fade-in-up">
+                    <div class="glass-card bg-white/50 dark:bg-[#111] border border-blue-500/20 p-4 rounded-2xl relative overflow-hidden group transition shadow-lg w-full max-w-xs">
+                         <div class="absolute top-0 left-0 w-full h-1 bg-blue-500"></div>
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase tracking-widest bg-blue-500/10 px-2 py-1 rounded-full">New Wager Created</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5"><i data-lucide="utensils" class="w-3 h-3"></i>DINNER</span>
+                             <span class="text-[10px] text-gray-500 font-mono">Live</span>
+                        </div>
+                        <p class="font-bold text-gray-900 dark:text-white text-[15px] mb-4 text-center leading-relaxed tracking-tight">"Sushisamba bill > £500"</p>
                         
-                        <div class="glass-card bg-white/50 dark:bg-[#111] border border-blue-500/20 p-4 rounded-2xl rounded-tl-none relative overflow-hidden group transition shadow-lg">
-                            <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
-                            <div class="flex justify-between items-start mb-2 pl-3">
-                                <span class="text-[10px] font-bold text-blue-500 uppercase tracking-widest flex items-center gap-1.5"><i data-lucide="utensils" class="w-3 h-3"></i>DINNER</span>
-                                <span class="text-[10px] text-gray-500 font-mono">Live</span>
-                            </div>
-                            <p class="font-bold text-gray-900 dark:text-white text-[15px] mb-4 pl-3 leading-relaxed tracking-tight">"Sushisamba bill > £500"</p>
-                            
-                            <div class="grid grid-cols-2 gap-2 pl-3">
-                                <button class="bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-500 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">Over (1.8x)</button>
-                                <button class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">Under (2.0x)</button>
-                            </div>
-                            <div class="mt-3 pl-3 flex items-center justify-between text-[10px] text-gray-500">
-                                <span>Pool: £120</span>
-                                <span>5 bets</span>
-                            </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-500 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">Over (1.8x)</button>
+                            <button class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">Under (2.0x)</button>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between text-[10px] text-gray-500 px-1">
+                            <span>Pool: £120</span>
+                            <span>5 bets</span>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="flex gap-3 flex-row-reverse">
                     <div class="w-9 h-9 rounded-full bg-blue-500 flex-shrink-0 border border-white/5 flex items-center justify-center text-[10px] font-bold text-white">Y</div>
@@ -289,11 +277,13 @@
                 </div>
 
                 <div id="typing-indicator" class="flex gap-3 hidden animate-fade-in-up">
-                    <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800 flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold text-gray-600 dark:text-gray-400">...</div>
-                    <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none w-16 flex items-center justify-center gap-1">
-                        <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing"></div>
-                        <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing" style="animation-delay: 0.2s"></div>
-                        <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing" style="animation-delay: 0.4s"></div>
+                    <div class="flex gap-1 items-end">
+                        <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800 flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold text-gray-600 dark:text-gray-400">...</div>
+                        <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none w-16 flex items-center justify-center gap-1">
+                            <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing" style="animation-delay: 0.2s"></div>
+                            <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing" style="animation-delay: 0.4s"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -450,42 +440,122 @@
             input.value = '';
             scrollToBottom();
             
-            // Check for smart reply logic (Profanity check as requested)
+            // ANALYZE TONE
             const lowerText = text.toLowerCase();
-            if (lowerText.includes("fuck you")) {
-                triggerSmartReply("fuck you too");
-            } else if (lowerText.includes("winning") || lowerText.includes("winner")) {
-                triggerSmartReply("Not you lol");
-            } else {
-                // Random chat reply
-                const randomChat = ["Facts.", "Cap.", "Bet.", "No way.", "Stop lying", "Send proof"][Math.floor(Math.random() * 6)];
-                triggerSmartReply(randomChat);
+            let intent = 'default';
+
+            // 1. Aggressive
+            if (lowerText.match(/fuck|shit|hate|shut up|stupid|idiot|trash/)) {
+                intent = 'aggressive';
             }
+            // 2. Question
+            else if (lowerText.match(/\?|who|what|where|when|why|how/)) {
+                intent = 'question';
+            }
+            // 3. Hype/Positive
+            else if (lowerText.match(/let's go|lfg|nice|win|winning|easy|money|rich|love/)) {
+                intent = 'hype';
+            }
+            // 4. Betting specific
+            else if (lowerText.match(/odds|bet|wager|stake|pool|under|over/)) {
+                intent = 'betting';
+            }
+            // 5. Explicit "Fuck You" catch (per user request)
+            else if (lowerText.includes("fuck you")) {
+                intent = 'fuck_you';
+            }
+
+            // TRIGGER GROUP RESPONSE
+            triggerGroupResponse(intent);
         }
 
-        function triggerSmartReply(text) {
-            const bot = bots[Math.floor(Math.random() * bots.length)];
+        // --- REPLY DICTIONARY ---
+        const responses = {
+            aggressive: [
+                "Who hurt you?", "Relax bro", "Someone's losing money lol", "Cry more", "Rent free", "Mad cause bad", "Take a breath", "Chill out", "Touch grass", "L"
+            ],
+            hype: [
+                "LFG", "Big money energy", "Inject this", "We feasting", "Easy dub", "I'm so in", "Huge", "W", "Let's ride", "To the moon"
+            ],
+            question: [
+                "Check the pinned msg", "Not you lol", "Ask Nicola", "Idk man", "Google it", "Don't worry about it", "Look at the leaderboard", "Honestly no clue", "Depends", "may I meet you?"
+            ],
+            betting: [
+                "I'm taking the over", "Fading you", "Odds seem wrong", "Free money", "All in", "Betting the house", "Lock of the century", "Risky but I like it", "Don't do it"
+            ],
+            fuck_you: [
+                "Fuck you back", "Fuck you too", "Love you too", "Aw you care", "Cunt", "We'll see about that", "When did you learn those big words", "You're a piece of shit", "If you win this bet you're a bitch"
+            ],
+            default: [
+                "Facts", "Cap", "Bet", "No way", "Stop lying", "Send proof", "Real", "Say less", "Interesting", "Lol", "Hmmmm", "You guys are so bad"
+            ]
+        };
+
+        const bots = [
+            { name: "Matteo", color: "bg-gray-200 dark:bg-gray-800", text: "text-gray-600 dark:text-gray-400", initial: "M" },
+            { name: "Filo", color: "bg-blue-100 dark:bg-blue-900/40", text: "text-blue-600 dark:text-blue-300", initial: "F" },
+            { name: "Nicola", color: "bg-red-100 dark:bg-red-900/40", text: "text-red-600 dark:text-red-300", initial: "N" },
+            { name: "Giulia", color: "bg-purple-100 dark:bg-purple-900/40", text: "text-purple-600 dark:text-purple-300", initial: "G" },
+            { name: "Alex", color: "bg-orange-100 dark:bg-orange-900/40", text: "text-orange-600 dark:text-orange-300", initial: "A" }
+        ];
+
+        function triggerGroupResponse(intent) {
+            // Determine how many bots reply (1, 2, or 3)
+            let replyCount = 1;
             
-            setTimeout(() => {
-                typingIndicator.classList.remove('hidden');
-                scrollToBottom();
+            // Higher chance of pile-on for aggressive or hype
+            if (intent === 'aggressive' || intent === 'hype') {
+                const rand = Math.random();
+                if (rand > 0.6) replyCount = 2;
+                if (rand > 0.9) replyCount = 3;
+            }
+
+            // Shuffle bots to get random responders
+            const shuffledBots = [...bots].sort(() => 0.5 - Math.random());
+            const selectedBots = shuffledBots.slice(0, replyCount);
+
+            // Base delay
+            let delay = 1000;
+
+            selectedBots.forEach((bot, index) => {
+                // Determine specific reply text
+                let replyList = responses[intent] || responses['default'];
+                // Override for specific phrases if needed
+                if (intent === 'fuck_you' && index === 0) replyList = responses['fuck_you']; 
                 
+                const text = replyList[Math.floor(Math.random() * replyList.length)];
+
+                // Schedule the reply (staggered)
                 setTimeout(() => {
-                    typingIndicator.classList.add('hidden');
-                    const replyHTML = `
-                    <div class="flex gap-3 animate-fade-in-up">
-                        <div class="w-9 h-9 rounded-full ${bot.color} flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold ${bot.text}">${bot.initial}</div>
-                        <div class="flex flex-col gap-1 max-w-[80%]">
-                            <span class="text-[10px] text-gray-500 ml-2 font-medium">${bot.name}</span>
-                            <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none text-[14px] text-gray-800 dark:text-gray-200 shadow-sm">
-                                ${text}
-                            </div>
+                    showTypingAndReply(bot, text);
+                }, delay);
+
+                // Add random delay for next bot (between 1.5s and 3s)
+                delay += 1500 + Math.random() * 1500;
+            });
+        }
+
+        function showTypingAndReply(bot, text) {
+            typingIndicator.classList.remove('hidden');
+            scrollToBottom();
+
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                
+                const replyHTML = `
+                <div class="flex gap-3 animate-fade-in-up">
+                    <div class="w-9 h-9 rounded-full ${bot.color} flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold ${bot.text}">${bot.initial}</div>
+                    <div class="flex flex-col gap-1 max-w-[80%]">
+                        <span class="text-[10px] text-gray-500 ml-2 font-medium">${bot.name}</span>
+                        <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none text-[14px] text-gray-800 dark:text-gray-200 shadow-sm">
+                            ${text}
                         </div>
-                    </div>`;
-                    chatContainer.insertBefore(createMessageNode(replyHTML), typingIndicator);
-                    scrollToBottom();
-                }, 1200);
-            }, 500);
+                    </div>
+                </div>`;
+                
+                chatContainer.insertBefore(createMessageNode(replyHTML), typingIndicator);
+                scrollToBottom();
+            }, 1000 + Math.random() * 500); // Typing lasts 1-1.5s
         }
 
         function createMessageNode(html) {
@@ -496,52 +566,6 @@
 
         function scrollToBottom() {
             chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // BOT REPLIES FOR BETS
-        const botReplies = {
-            binary: ["Easy money on yes.", "I'm fading this.", "Free money.", "Don't do it...", "Hammering Yes."],
-            overunder: ["Under is a lock.", "Over. Easy.", "I'm going under.", "Way too high, under."],
-            custom: ["It's gotta be Vincenzo.", "Matteo 100%.", "Putting 50 on Nicola."],
-            time: ["11:30pm latest.", "Before midnight for sure.", "No way it's that early."],
-            dare: ["Do it.", "Double or nothing.", "Scared money don't make money.", "Please do this."]
-        };
-        
-        const bots = [
-            { name: "Matteo", color: "bg-gray-200 dark:bg-gray-800", text: "text-gray-600 dark:text-gray-400", initial: "M" },
-            { name: "Filo", color: "bg-blue-100 dark:bg-blue-900/40", text: "text-blue-600 dark:text-blue-300", initial: "F" },
-            { name: "Nicola", color: "bg-red-100 dark:bg-red-900/40", text: "text-red-600 dark:text-red-300", initial: "N" }
-        ];
-
-        function triggerBotReply(type) {
-            const bot = bots[Math.floor(Math.random() * bots.length)];
-            const replies = botReplies[type];
-            const reply = replies[Math.floor(Math.random() * replies.length)];
-
-            // Show Typing
-            setTimeout(() => {
-                typingIndicator.classList.remove('hidden');
-                scrollToBottom();
-                
-                // Hide Typing & Show Message
-                setTimeout(() => {
-                    typingIndicator.classList.add('hidden');
-                    
-                    const replyHTML = `
-                    <div class="flex gap-3 animate-fade-in-up">
-                        <div class="w-9 h-9 rounded-full ${bot.color} flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold ${bot.text}">${bot.initial}</div>
-                        <div class="flex flex-col gap-1 max-w-[80%]">
-                            <span class="text-[10px] text-gray-500 ml-2 font-medium">${bot.name}</span>
-                            <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none text-[14px] text-gray-800 dark:text-gray-200 shadow-sm">
-                                ${reply}
-                            </div>
-                        </div>
-                    </div>`;
-                    
-                    chatContainer.insertBefore(createMessageNode(replyHTML), typingIndicator);
-                    scrollToBottom();
-                }, 1500); // Typing duration
-            }, 600); // Initial delay
         }
 
         function createSimulatedBet(type) {
@@ -557,7 +581,7 @@
             let icon = "utensils";
 
             if (type === 'overunder') {
-                title = "Uber Surge > 2.5x";
+                title = "Uber Price > $40";
                 tag = "TRANSPORT";
                 btn1 = "OVER";
                 btn2 = "UNDER";
@@ -568,7 +592,7 @@
             } else if (type === 'custom') {
                 title = "Who leaves the club first?";
                 tag = "SOCIAL";
-                btn1 = "FILO";
+                btn1 = "FILIPPO";
                 btn2 = "MATTEO";
                 color = "text-purple-500";
                 border = "border-purple-500/20";
@@ -595,22 +619,27 @@
             }
 
             setTimeout(() => {
+                // SYSTEM BET (CENTERED)
                 const betHTML = `
-                <div class="flex gap-3 animate-fade-in-up">
-                    <div class="w-9 h-9 rounded-full bg-blue-500 flex-shrink-0 border border-white/5 flex items-center justify-center text-[10px] font-bold text-white">Y</div>
-                    <div class="flex flex-col gap-1 max-w-[90%]">
-                        <span class="text-[10px] text-gray-500 ml-2 font-medium">You</span>
-                        <div class="glass-card bg-white/50 dark:bg-[#111] ${border} p-4 rounded-2xl rounded-tl-none relative overflow-hidden group shadow-lg">
-                            <div class="absolute top-0 left-0 w-1.5 h-full ${bar}"></div>
-                            <div class="flex justify-between items-start mb-2 pl-3">
-                                <span class="text-[10px] font-bold ${color} uppercase tracking-widest flex items-center gap-1.5"><i data-lucide="${icon}" class="w-3 h-3"></i>${tag}</span>
-                                <span class="text-[10px] text-gray-500 font-mono">Live</span>
-                            </div>
-                            <p class="font-bold text-gray-900 dark:text-white text-[15px] mb-4 pl-3 leading-relaxed tracking-tight">"${title}"</p>
-                            <div class="grid grid-cols-2 gap-2 pl-3">
-                                <button class="bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 ${color} py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">${btn1}</button>
-                                <button class="bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-400 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">${btn2}</button>
-                            </div>
+                <div class="w-full flex justify-center py-2 animate-fade-in-up">
+                    <div class="glass-card bg-white/50 dark:bg-[#111] ${border} p-4 rounded-2xl relative overflow-hidden group transition shadow-lg w-full max-w-xs">
+                         <div class="absolute top-0 left-0 w-full h-1 ${bar}"></div>
+                        <div class="text-center mb-3">
+                            <span class="text-[10px] font-bold ${color} uppercase tracking-widest ${color.replace('text-', 'bg-')}/10 px-2 py-1 rounded-full">New Wager Created</span>
+                        </div>
+                        <div class="flex justify-between items-start mb-2">
+                             <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5"><i data-lucide="${icon}" class="w-3 h-3"></i>${tag}</span>
+                             <span class="text-[10px] text-gray-500 font-mono">Live</span>
+                        </div>
+                        <p class="font-bold text-gray-900 dark:text-white text-[15px] mb-4 text-center leading-relaxed tracking-tight">"${title}"</p>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="${color.replace('text-', 'bg-')}/10 hover:${color.replace('text-', 'bg-')}/20 border ${border} ${color} py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">${btn1}</button>
+                            <button class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-400 py-2.5 rounded-xl text-[11px] font-bold transition uppercase tracking-wider">${btn2}</button>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between text-[10px] text-gray-500 px-1">
+                            <span>Pool: £0</span>
+                            <span>0 bets</span>
                         </div>
                     </div>
                 </div>`;
@@ -618,8 +647,8 @@
                 chatContainer.insertBefore(createMessageNode(betHTML), typingIndicator);
                 scrollToBottom();
                 
-                // Trigger Bot
-                triggerBotReply(type);
+                // Trigger Bot Hype for new bet
+                triggerGroupResponse('betting');
 
             }, 500);
         }
