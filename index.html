@@ -58,6 +58,11 @@
         .fade-num { transition: color 0.3s ease; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .mask-linear {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-white overflow-x-hidden relative selection:bg-blue-500 selection:text-white font-sans leading-antialiased transition-colors duration-500">
@@ -283,7 +288,7 @@
                     </div>
                 </div>
 
-                <div id="typing-indicator" class="flex gap-3 hidden">
+                <div id="typing-indicator" class="flex gap-3 hidden animate-fade-in-up">
                     <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-800 flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold text-gray-600 dark:text-gray-400">...</div>
                     <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none w-16 flex items-center justify-center gap-1">
                         <div class="w-1.5 h-1.5 bg-gray-400 rounded-full animate-typing"></div>
@@ -444,6 +449,43 @@
             chatContainer.insertBefore(createMessageNode(msgHTML), typingIndicator);
             input.value = '';
             scrollToBottom();
+            
+            // Check for smart reply logic (Profanity check as requested)
+            const lowerText = text.toLowerCase();
+            if (lowerText.includes("fuck you")) {
+                triggerSmartReply("fuck you too");
+            } else if (lowerText.includes("winning") || lowerText.includes("winner")) {
+                triggerSmartReply("Not you lol");
+            } else {
+                // Random chat reply
+                const randomChat = ["Facts.", "Cap.", "Bet.", "No way.", "Stop lying", "Send proof"][Math.floor(Math.random() * 6)];
+                triggerSmartReply(randomChat);
+            }
+        }
+
+        function triggerSmartReply(text) {
+            const bot = bots[Math.floor(Math.random() * bots.length)];
+            
+            setTimeout(() => {
+                typingIndicator.classList.remove('hidden');
+                scrollToBottom();
+                
+                setTimeout(() => {
+                    typingIndicator.classList.add('hidden');
+                    const replyHTML = `
+                    <div class="flex gap-3 animate-fade-in-up">
+                        <div class="w-9 h-9 rounded-full ${bot.color} flex-shrink-0 border border-black/5 dark:border-white/5 flex items-center justify-center text-[10px] font-bold ${bot.text}">${bot.initial}</div>
+                        <div class="flex flex-col gap-1 max-w-[80%]">
+                            <span class="text-[10px] text-gray-500 ml-2 font-medium">${bot.name}</span>
+                            <div class="bg-white dark:bg-[#1A1A1A] border border-gray-200 dark:border-white/5 p-3.5 rounded-2xl rounded-tl-none text-[14px] text-gray-800 dark:text-gray-200 shadow-sm">
+                                ${text}
+                            </div>
+                        </div>
+                    </div>`;
+                    chatContainer.insertBefore(createMessageNode(replyHTML), typingIndicator);
+                    scrollToBottom();
+                }, 1200);
+            }, 500);
         }
 
         function createMessageNode(html) {
@@ -456,7 +498,7 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
-        // BOT REPLIES
+        // BOT REPLIES FOR BETS
         const botReplies = {
             binary: ["Easy money on yes.", "I'm fading this.", "Free money.", "Don't do it...", "Hammering Yes."],
             overunder: ["Under is a lock.", "Over. Easy.", "I'm going under.", "Way too high, under."],
