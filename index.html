@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="dark"> <head>
+<html lang="en" class="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAGER - Social Betting</title>
@@ -17,6 +18,7 @@
                         'float-slow': 'float 8s ease-in-out infinite',
                         'float-medium': 'float 6s ease-in-out infinite',
                         'float-fast': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         float: {
@@ -30,219 +32,359 @@
     </script>
 
     <style>
-        /* Glassmorphism */
         .glass-card {
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        
-        /* Light Mode Glass */
         .glass-card-light {
             background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.9);
         }
-
         .fade-num { transition: color 0.3s ease; }
+        
+        /* Hide scrollbar for chat */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-white transition-colors duration-500 overflow-x-hidden relative selection:bg-green-500 selection:text-black">
-
-    <button onclick="toggleTheme()" class="fixed top-6 right-6 z-50 p-3 rounded-full bg-white/80 dark:bg-white/10 border border-gray-200 dark:border-white/10 hover:scale-110 transition shadow-lg backdrop-blur-md">
-        <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-gray-800"></i>
-        <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-yellow-400"></i>
-    </button>
+<body class="bg-gray-50 text-gray-900 dark:bg-[#050505] dark:text-white transition-colors duration-500 overflow-x-hidden relative selection:bg-green-500 selection:text-black font-sans">
 
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-green-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[800px] h-[800px] bg-emerald-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-60 dark:opacity-0 transition-opacity"></div>
-        
         <div class="absolute top-[-20%] left-[-10%] w-[900px] h-[900px] bg-green-900/20 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
         <div class="absolute bottom-[-20%] right-[-10%] w-[700px] h-[700px] bg-emerald-900/15 rounded-full mix-blend-screen filter blur-[120px] opacity-0 dark:opacity-100 transition-opacity"></div>
     </div>
 
-    <div class="relative w-full min-h-[90vh] flex flex-col items-center pt-24 pb-32">
+    <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+        <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-full p-1 flex">
+            <button onclick="switchView('home')" id="btn-home" class="px-6 py-2 rounded-full text-sm font-bold bg-green-500 text-black transition-all shadow-lg">Home</button>
+            <button onclick="switchView('app')" id="btn-app" class="px-6 py-2 rounded-full text-sm font-bold text-gray-400 hover:text-white transition-all">Try It</button>
+        </div>
+    </div>
 
-        <div class="z-20 text-center mb-24 animate-fade-in">
-            <h2 class="text-6xl font-extrabold tracking-tighter cursor-default dark:text-white text-gray-900">VAGER.</h2>
+    <section id="home-view" class="w-full transition-opacity duration-500">
+        
+        <div class="relative w-full min-h-[90vh] flex flex-col items-center pt-32 pb-32">
+            <div class="z-20 text-center mb-16 animate-fade-in">
+                <h2 class="text-6xl font-extrabold tracking-tighter cursor-default dark:text-white text-gray-900">VAGER.</h2>
+            </div>
+
+            <div class="z-20 text-center px-4 max-w-[500px] mx-auto flex flex-col items-center">
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.05]">
+                    Make everything <br> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">a bet.</span>
+                </h1>
+                <p class="text-gray-400 text-xl mb-12 leading-relaxed font-medium">
+                    The prediction market for your friend group. <br>
+                    Put your money where your mouth is.
+                </p>
+
+                <div class="w-full relative group mb-8">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                    <div class="relative flex flex-col gap-3 p-1">
+                        <input type="email" placeholder="name@example.com" class="w-full bg-black border border-gray-800 text-white rounded-xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-green-500 transition placeholder-gray-400 text-center text-lg shadow-sm">
+                        <button class="w-full bg-white text-black font-bold rounded-xl px-8 py-4 hover:opacity-90 transition transform active:scale-95 text-lg shadow-xl">
+                            Join Waitlist
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-center gap-2 text-sm text-gray-500 font-mono">
+                    <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <p><span id="waitlist-count" class="text-gray-300 font-bold fade-num">10,238</span> people in line</p>
+                </div>
+            </div>
+
+            <div class="hidden xl:block absolute top-[15%] left-[5%] w-64 glass-card dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-slow transform -rotate-3 z-10">
+                <div class="flex justify-between items-center mb-3"><span class="text-[10px] font-bold text-red-500 uppercase">Live</span><span class="text-[10px] text-gray-500">2am</span></div>
+                <p class="font-bold text-lg mb-3 leading-tight">"Giulia throws up tonight"</p>
+                <div class="flex gap-2">
+                    <div class="flex-1 bg-white/10 p-2 rounded text-center"><div class="text-[10px] text-gray-500">YES</div><div class="text-green-400 font-bold font-mono">2.5x</div></div>
+                    <div class="flex-1 bg-white/10 p-2 rounded text-center"><div class="text-[10px] text-gray-500">NO</div><div class="text-blue-400 font-bold font-mono">1.2x</div></div>
+                </div>
+            </div>
+            
+            <div class="hidden xl:block absolute top-[18%] right-[5%] w-72 glass-card dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-medium transform rotate-3 z-10">
+                <div class="flex justify-between items-center mb-3"><span class="text-[10px] font-bold text-green-500 uppercase">Long Term</span></div>
+                <p class="font-bold text-lg mb-3 leading-tight">"Filippo gets a GF before end of 2026"</p>
+                <div class="grid grid-cols-2 gap-2"><button class="bg-white/10 py-2 rounded-lg text-xs font-bold">Buy YES</button><button class="bg-white/10 py-2 rounded-lg text-xs font-bold">Buy NO</button></div>
+            </div>
+
+            <div class="hidden xl:block absolute -bottom-16 left-[8%] w-60 glass-card dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-medium transform rotate-6 z-40 border-b-4 border-b-red-500">
+                <div class="flex justify-between mb-1"><span class="text-xs font-bold text-gray-400">CASINO</span></div>
+                <p class="font-bold text-md mb-2">"Alex loses $100 at the casino tonight"</p>
+                <div class="bg-red-500/20 p-2 rounded text-center"><span class="text-red-400 text-xs font-bold">YES: 1.10x</span></div>
+           </div>
         </div>
 
-        <div class="z-20 text-center px-4 max-w-[500px] mx-auto flex flex-col items-center">
-            
-            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.05]">
-                Make everything <br> 
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">a bet.</span>
-            </h1>
-            
-            <p class="text-gray-600 dark:text-gray-400 text-xl mb-12 leading-relaxed font-medium">
-                The prediction market for your friend group. <br>
-                Put your money where your mouth is.
-            </p>
+        <div class="relative bg-black/60 border-t border-white/5 backdrop-blur-xl z-30 pb-20 pt-20">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-white mb-8">Social first. Betting second.</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="p-6 border border-white/10 rounded-xl"><i data-lucide="message-square" class="mx-auto mb-4 text-green-400"></i><h3 class="font-bold">Group Chats</h3></div>
+                    <div class="p-6 border border-white/10 rounded-xl"><i data-lucide="trophy" class="mx-auto mb-4 text-emerald-400"></i><h3 class="font-bold">Leaderboards</h3></div>
+                    <div class="p-6 border border-white/10 rounded-xl"><i data-lucide="wallet" class="mx-auto mb-4 text-lime-400"></i><h3 class="font-bold">The Ledger</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="w-full relative group mb-8">
-                <div class="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
-                <div class="relative flex flex-col gap-3 p-1">
-                    <input type="email" placeholder="name@example.com" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 text-gray-900 dark:text-white rounded-xl px-6 py-5 focus:outline-none focus:ring-2 focus:ring-green-500 transition placeholder-gray-400 text-center text-lg shadow-sm">
-                    <button class="w-full bg-black dark:bg-white text-white dark:text-black font-bold rounded-xl px-8 py-4 hover:opacity-90 transition transform active:scale-95 text-lg shadow-xl">
-                        Join Waitlist
+    <section id="app-view" class="w-full min-h-screen pt-24 pb-12 hidden opacity-0 transition-opacity duration-500 flex justify-center items-start">
+        
+        <div class="relative w-full max-w-sm h-[800px] bg-black border-[8px] border-gray-800 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col">
+            
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-black rounded-b-3xl z-50"></div>
+
+            <div class="bg-gray-900/80 backdrop-blur-md pt-12 pb-4 px-4 border-b border-white/5 flex items-center justify-between z-40 sticky top-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-red-600 flex items-center justify-center text-xs font-bold text-white border-2 border-white/10">🇬🇧</div>
+                    <div>
+                        <h3 class="font-bold text-white text-sm">London 2026</h3>
+                        <p class="text-xs text-gray-400">8 members • Online</p>
+                    </div>
+                </div>
+                <i data-lucide="more-vertical" class="text-gray-400 w-5 h-5"></i>
+            </div>
+
+            <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar bg-black relative">
+                
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-gray-700 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 max-w-[75%]">
+                        <span class="text-[10px] text-gray-500 ml-1">Matteo</span>
+                        <div class="bg-gray-800 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200">
+                            Are we actually doing Sushisamba?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-900 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 max-w-[75%]">
+                        <span class="text-[10px] text-gray-500 ml-1">Filo</span>
+                        <div class="bg-gray-800 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200">
+                            Table is booked for 9. Don't flake.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-purple-900 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 max-w-[85%]">
+                        <span class="text-[10px] text-gray-500 ml-1">Giulia</span>
+                        
+                        <div class="glass-card bg-gray-900/50 border border-green-500/30 p-4 rounded-2xl rounded-tl-none relative overflow-hidden group hover:border-green-500/60 transition">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                            <div class="flex justify-between items-start mb-2 pl-2">
+                                <span class="text-xs font-bold text-green-400 uppercase tracking-widest">DINNER</span>
+                                <span class="text-[10px] text-gray-500">Live</span>
+                            </div>
+                            <p class="font-bold text-white text-sm mb-3 pl-2 leading-relaxed">"Sushisamba bill > £500"</p>
+                            
+                            <div class="grid grid-cols-2 gap-2 pl-2">
+                                <button class="bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-400 py-2 rounded-lg text-xs font-bold transition">Over (1.8x)</button>
+                                <button class="bg-gray-500/10 hover:bg-gray-500/20 border border-gray-500/20 text-gray-400 py-2 rounded-lg text-xs font-bold transition">Under (2.0x)</button>
+                            </div>
+                            <div class="mt-3 pl-2 flex items-center gap-2 text-[10px] text-gray-500">
+                                <span>pool: £120</span>
+                                <div class="h-1 w-1 rounded-full bg-gray-600"></div>
+                                <span>5 bets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3 flex-row-reverse">
+                    <div class="w-8 h-8 rounded-full bg-green-900 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 items-end max-w-[75%]">
+                        <div class="bg-green-600 p-3 rounded-2xl rounded-tr-none text-sm text-white">
+                            Easy under. Nicola isn't drinking.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-4 bg-gray-900/90 backdrop-blur border-t border-white/5">
+                <div class="flex items-end gap-2">
+                    <button onclick="openBetMenu()" class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-400 flex items-center justify-center text-black shadow-lg transition transform active:scale-95">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </button>
+                    
+                    <div class="flex-1 bg-gray-800 rounded-2xl px-4 py-2 min-h-[40px] flex items-center">
+                        <input type="text" id="chat-input" placeholder="Message..." class="bg-transparent text-white text-sm w-full focus:outline-none placeholder-gray-500" onkeypress="handleEnter(event)">
+                    </div>
+                    
+                    <button onclick="sendMessage()" class="p-2 text-green-500 hover:text-white transition">
+                        <i data-lucide="send" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>
-            
-            <div class="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-500 font-mono">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                <p><span id="waitlist-count" class="text-gray-900 dark:text-gray-300 font-bold fade-num">10,238</span> people in line</p>
-            </div>
-        </div>
 
-
-        <div class="hidden xl:block absolute top-[15%] left-[5%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-slow transform -rotate-3 z-10 hover:scale-105 hover:rotate-0">
-            <div class="flex justify-between items-center mb-3">
-                <span class="text-[10px] font-bold text-red-500 uppercase tracking-widest">Live</span>
-                <span class="text-[10px] text-gray-500">Ends 2am</span>
-            </div>
-            <p class="font-bold text-lg mb-3 leading-tight">"Giulia throws up tonight"</p>
-            <div class="flex gap-2">
-                <div class="flex-1 bg-black/5 dark:bg-white/10 p-2 rounded text-center">
-                    <div class="text-[10px] text-gray-500">YES</div>
-                    <div class="text-green-600 dark:text-green-400 font-bold font-mono">2.5x</div>
+            <div id="bet-modal" class="absolute bottom-0 left-0 w-full h-[60%] bg-gray-900 border-t border-green-500/30 rounded-t-3xl p-6 transform translate-y-full transition-transform duration-300 z-50">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-white text-lg">New Wager</h3>
+                    <button onclick="closeBetMenu()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
                 </div>
-                <div class="flex-1 bg-black/5 dark:bg-white/10 p-2 rounded text-center">
-                    <div class="text-[10px] text-gray-500">NO</div>
-                    <div class="text-blue-600 dark:text-blue-400 font-bold font-mono">1.2x</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="hidden xl:block absolute top-[18%] right-[5%] w-72 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-5 animate-float-medium transform rotate-3 z-10 hover:scale-105 hover:rotate-0">
-            <div class="flex justify-between items-center mb-3">
-                <span class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Long Term</span>
-            </div>
-            <p class="font-bold text-lg mb-3 leading-tight">"Filippo gets a GF before end of 2026"</p>
-             <div class="grid grid-cols-2 gap-2">
-                <button class="bg-black/5 dark:bg-white/10 hover:bg-black/10 transition py-2 rounded-lg text-xs font-bold">Buy YES</button>
-                <button class="bg-black/5 dark:bg-white/10 hover:bg-black/10 transition py-2 rounded-lg text-xs font-bold">Buy NO</button>
-            </div>
-        </div>
+                <div class="space-y-3">
+                    <button onclick="createSimulatedBet('binary')" class="w-full bg-gray-800 hover:bg-gray-700 p-4 rounded-xl flex items-center gap-4 transition text-left group">
+                        <div class="w-10 h-10 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center group-hover:bg-green-500 group-hover:text-black transition"><i data-lucide="check" class="w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Binary (Yes/No)</h4>
+                            <p class="text-xs text-gray-400">Simple outcome. Winner takes all.</p>
+                        </div>
+                    </button>
 
-        <div class="hidden xl:block absolute top-[50%] left-[3%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform rotate-2 z-0 hover:scale-105 hover:rotate-0">
-             <div class="flex items-center gap-2 mb-2">
-                <i data-lucide="music" class="w-4 h-4 text-green-500"></i>
-                <span class="text-xs font-bold text-gray-400">DATA</span>
-            </div>
-            <p class="font-bold text-md mb-2">"Sarah's Spotify Wrapped > 40k mins"</p>
-             <div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-green-500 h-full w-[65%]"></div>
-            </div>
-        </div>
+                    <button onclick="createSimulatedBet('overunder')" class="w-full bg-gray-800 hover:bg-gray-700 p-4 rounded-xl flex items-center gap-4 transition text-left group">
+                        <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-black transition"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Over / Under</h4>
+                            <p class="text-xs text-gray-400">Set a number. Bet above or below.</p>
+                        </div>
+                    </button>
 
-        <div class="hidden xl:block absolute top-[45%] right-[2%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-slow transform -rotate-2 z-0 hover:scale-105 hover:rotate-0">
-             <div class="flex justify-between items-center mb-2">
-                <span class="text-xs font-bold text-orange-500">FIT CHECK</span>
-            </div>
-            <p class="font-bold text-md mb-2">"Nicola comes to the party in sweatpants"</p>
-             <div class="flex justify-between items-center mt-2 border-t border-gray-200 dark:border-white/10 pt-2">
-                 <span class="text-xs text-gray-500">Stake</span>
-                 <span class="font-bold text-green-400 font-mono">Drinks</span>
-             </div>
-        </div>
-
-        <div class="hidden xl:block absolute -bottom-16 left-[8%] w-60 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-medium transform rotate-6 z-40 hover:scale-105 hover:rotate-0 border-b-4 border-b-red-500">
-             <div class="flex justify-between mb-1">
-                <span class="text-xs font-bold text-gray-400">CASINO</span>
-            </div>
-            <p class="font-bold text-md mb-2">"Alex loses $100 at the casino tonight"</p>
-            <div class="bg-red-100 dark:bg-red-500/20 p-2 rounded text-center">
-                 <span class="text-red-700 dark:text-red-400 text-xs font-bold">YES: 1.10x (Likely)</span>
-            </div>
-        </div>
-
-        <div class="hidden xl:block absolute -bottom-12 right-[8%] w-64 glass-card glass-card-light dark:bg-white/5 dark:border-white/10 rounded-2xl p-4 animate-float-fast transform -rotate-4 z-40 hover:scale-105 hover:rotate-0 border-b-4 border-b-yellow-500">
-            <div class="flex justify-between items-center mb-2">
-               <span class="text-xs font-bold text-yellow-500">THE LIE</span>
-           </div>
-           <p class="font-bold text-md mb-2">"Vincenzo says 'I'm not drinking tonight'"</p>
-           <div class="flex justify-between items-center border-t border-gray-200 dark:border-white/10 pt-2">
-               <span class="text-xs text-gray-500">Odds</span>
-               <span class="font-mono font-bold text-yellow-400">1.05x</span>
-           </div>
-       </div>
-
-    </div>
-
-    <div class="relative z-30 pb-20 pt-32">
-        <div class="max-w-6xl mx-auto px-6">
-            
-            <div class="text-center mb-20">
-                <span class="text-green-600 dark:text-green-400 font-bold tracking-widest text-xs uppercase mb-2 block">The Platform</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white">Social first.<br>Betting second.</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 mb-20">
-                <div class="glass-card glass-card-light dark:bg-white/5 dark:border-white/5 p-8 rounded-3xl hover:-translate-y-2 transition duration-300">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-500/10 rounded-xl flex items-center justify-center mb-6 text-green-600 dark:text-green-400"><i data-lucide="message-square" class="w-6 h-6"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Group Chats</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">Every bet creates a thread. Argue about the odds, post photo evidence, and gloat when you win.</p>
-                </div>
-                <div class="glass-card glass-card-light dark:bg-white/5 dark:border-white/5 p-8 rounded-3xl hover:-translate-y-2 transition duration-300">
-                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 text-emerald-600 dark:text-emerald-400"><i data-lucide="trophy" class="w-6 h-6"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Leaderboards</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">See who in your friend group actually knows what they're talking about, and who is just loud.</p>
-                </div>
-                <div class="glass-card glass-card-light dark:bg-white/5 dark:border-white/5 p-8 rounded-3xl hover:-translate-y-2 transition duration-300">
-                    <div class="w-12 h-12 bg-lime-100 dark:bg-lime-500/10 rounded-xl flex items-center justify-center mb-6 text-lime-600 dark:text-lime-400"><i data-lucide="wallet" class="w-6 h-6"></i></div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">The Ledger</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">No more chasing people for cash. The "Judge" settles the bet, and the Ledger updates balances.</p>
+                     <button onclick="createSimulatedBet('custom')" class="w-full bg-gray-800 hover:bg-gray-700 p-4 rounded-xl flex items-center gap-4 transition text-left group">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center group-hover:bg-purple-500 group-hover:text-black transition"><i data-lucide="users" class="w-5 h-5"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Multiple Choice</h4>
+                            <p class="text-xs text-gray-400">Who will do it? Pick a person.</p>
+                        </div>
+                    </button>
                 </div>
             </div>
 
-            <div class="w-full max-w-2xl mx-auto glass-card glass-card-light dark:bg-green-500/10 dark:border-green-500/30 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4">
-                <div>
-                    <h4 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2 justify-center md:justify-start">
-                        <i data-lucide="gift" class="w-5 h-5 text-green-500"></i>
-                        Free Bets
-                    </h4>
-                    <p class="text-sm text-gray-500 dark:text-gray-300">Invite a friend to Vager and get $10 in free bets.</p>
-                </div>
-                <button class="bg-black dark:bg-green-500 text-white dark:text-black font-bold px-6 py-2 rounded-lg text-sm hover:opacity-90 transition">
-                    Get Link
-                </button>
-            </div>
-
         </div>
-    </div>
-
-    <footer class="border-t border-gray-100 dark:border-white/5 py-12 text-center transition-colors duration-500 relative z-30">
-        <h2 class="text-2xl font-extrabold tracking-tighter text-gray-900 dark:text-gray-700 mb-6">VAGER.</h2>
-        <p class="text-xs text-gray-500 dark:text-gray-600">&copy; 2026 Vager Inc.</p>
-    </footer>
+    </section>
 
     <script>
         lucide.createIcons();
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.theme = 'light'; } 
-            else { html.classList.add('dark'); localStorage.theme = 'dark'; }
+
+        // 1. NAVIGATION LOGIC
+        function switchView(view) {
+            const home = document.getElementById('home-view');
+            const app = document.getElementById('app-view');
+            const btnHome = document.getElementById('btn-home');
+            const btnApp = document.getElementById('btn-app');
+
+            if (view === 'app') {
+                home.classList.add('hidden');
+                app.classList.remove('hidden');
+                setTimeout(() => app.classList.remove('opacity-0'), 10); // Fade in
+                
+                // Update Buttons
+                btnApp.classList.add('bg-green-500', 'text-black', 'shadow-lg');
+                btnApp.classList.remove('text-gray-400');
+                btnHome.classList.remove('bg-green-500', 'text-black', 'shadow-lg');
+                btnHome.classList.add('text-gray-400');
+            } else {
+                app.classList.add('opacity-0');
+                setTimeout(() => {
+                    app.classList.add('hidden');
+                    home.classList.remove('hidden');
+                }, 300);
+
+                // Update Buttons
+                btnHome.classList.add('bg-green-500', 'text-black', 'shadow-lg');
+                btnHome.classList.remove('text-gray-400');
+                btnApp.classList.remove('bg-green-500', 'text-black', 'shadow-lg');
+                btnApp.classList.add('text-gray-400');
+            }
         }
+
+        // 2. CHAT & BET LOGIC
+        const chatContainer = document.getElementById('chat-container');
+        const modal = document.getElementById('bet-modal');
+
+        function openBetMenu() {
+            modal.classList.remove('translate-y-full');
+        }
+
+        function closeBetMenu() {
+            modal.classList.add('translate-y-full');
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            const msgHTML = `
+                <div class="flex gap-3 flex-row-reverse animate-pulse-slow">
+                    <div class="w-8 h-8 rounded-full bg-green-900 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 items-end max-w-[75%]">
+                        <div class="bg-green-600 p-3 rounded-2xl rounded-tr-none text-sm text-white">${text}</div>
+                    </div>
+                </div>`;
+            
+            chatContainer.insertAdjacentHTML('beforeend', msgHTML);
+            input.value = '';
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function createSimulatedBet(type) {
+            closeBetMenu();
+            
+            let title = "Vincenzo loses his wallet";
+            let tag = "NIGHT OUT";
+            let color = "red";
+
+            if (type === 'overunder') {
+                title = "Uber Surge > 2.5x";
+                tag = "TRANSPORT";
+                color = "blue";
+            } else if (type === 'custom') {
+                title = "Who leaves the club first?";
+                tag = "SOCIAL";
+                color = "purple";
+            }
+
+            // Simulate "Typing..." delay then insert bet
+            setTimeout(() => {
+                const betHTML = `
+                <div class="flex gap-3 animate-float-medium">
+                    <div class="w-8 h-8 rounded-full bg-green-900 flex-shrink-0"></div>
+                    <div class="flex flex-col gap-1 max-w-[85%]">
+                        <span class="text-[10px] text-gray-500 ml-1">You (Creator)</span>
+                        <div class="glass-card bg-gray-900/50 border border-green-500/50 p-4 rounded-2xl rounded-tr-none relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
+                            <div class="flex justify-between items-start mb-2 pl-2">
+                                <span class="text-xs font-bold text-green-400 uppercase tracking-widest">${tag}</span>
+                                <span class="text-[10px] text-gray-500">Live</span>
+                            </div>
+                            <p class="font-bold text-white text-sm mb-3 pl-2 leading-relaxed">"${title}"</p>
+                            <div class="grid grid-cols-2 gap-2 pl-2">
+                                <button class="bg-green-500/20 border border-green-500 text-green-400 py-2 rounded-lg text-xs font-bold">YES</button>
+                                <button class="bg-gray-700/50 border border-gray-600 text-gray-400 py-2 rounded-lg text-xs font-bold">NO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                
+                chatContainer.insertAdjacentHTML('beforeend', betHTML);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 500);
+        }
+
+        // Waitlist Counter
         let count = 10238;
         const counterElement = document.getElementById('waitlist-count');
         function updateCounter() {
             count++;
             counterElement.innerText = count.toLocaleString();
-            const isDark = document.documentElement.classList.contains('dark');
-            const flashColor = isDark ? 'text-white' : 'text-green-600';
-            const baseColor = isDark ? 'text-gray-300' : 'text-gray-900';
-            counterElement.classList.remove(baseColor);
-            counterElement.classList.add(flashColor);
-            setTimeout(() => { counterElement.classList.remove(flashColor); counterElement.classList.add(baseColor); }, 500);
-            const randomDelay = Math.floor(Math.random() * (8000 - 2000 + 1) + 2000);
-            setTimeout(updateCounter, randomDelay);
+            setTimeout(updateCounter, Math.random() * (8000 - 2000) + 2000);
         }
         setTimeout(updateCounter, 3000);
+
     </script>
 </body>
 </html>
